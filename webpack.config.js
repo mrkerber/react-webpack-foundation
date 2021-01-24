@@ -1,6 +1,6 @@
-const Path = require('path');
+const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Webpack = require('webpack');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -96,29 +96,30 @@ module.exports = function(_env, argv) {
           }
         }),
         new OptimizeCssAssetsPlugin()
-      ],
-      splitChunks: {
-        chunks: "all",
-        minSize: 0,
-        maxInitialRequests: 20,
-        maxAsyncRequests: 20,
-        cacheGroups: {
-          vendors: {
-            test: /[\\/]noe_modules[\\/]/,
-            name(module, chunks, cacheGroupKey) {
-              const packageName = module.context.match(
-                /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-              )[1];
-              return '${cacheGroupKey}.${packageName.replace("@", "")}';
-            }
-          },
-          common: {
-            minChunks: 2,
-            priority: -10
-          }
-        }
-      },
-      runtimeChunk:"single"
+      ]
+      // ,
+      // splitChunks: {
+      //   chunks: "all",
+      //   minSize: 0,
+      //   maxInitialRequests: 20,
+      //   maxAsyncRequests: 20,
+      //   cacheGroups: {
+      //     vendors: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name(module, chunks, cacheGroupKey) {
+      //         const packageName = module.context.match(
+      //           /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+      //         )[1];
+      //         return '${cacheGroupKey}.${packageName.replace("@", "")}';
+      //       }
+      //     },
+      //     common: {
+      //       minChunks: 1,
+      //       priority: -10
+      //     }
+      //   }
+      // },
+      // runtimeChunk:"single"
     },
     resolve: {
       extensions: [".js", ".jsx"]

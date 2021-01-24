@@ -1,8 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const path = require('path');
-
-//command to start webpack: npx webpack
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function(_env, argv) {
   const isProduction = argv.mode === "production";
@@ -25,6 +24,34 @@ module.exports = function(_env, argv) {
               envName: isProduction ? "production" : "development"
             }
           }
+        },
+        {
+          test: /\.css$/,
+          use: [
+            isProduction ? MiniCssExtractPlugin.loader : "style=loader",
+            "css-loader"
+          ]
+        },
+        {
+          test: /\.(png|jpg|gif)$/i,
+          use: {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+              name: "static/media/[name].[hash:8].[ext]"
+            }
+          }
+        },
+        {
+          test: /\.svg$/,
+          use: ["@svgr/webpack"]
+        },
+        {
+          test: /\.(eot|otf|ttf|woff|woff2)$/,
+          loader: require.resolve("file-loader"),
+          options: {
+          name: "static/media/[name].[hash:8].[ext]"
+          }
         }
       ]
     },
@@ -33,9 +60,24 @@ module.exports = function(_env, argv) {
       path: path.resolve(__dirname, 'dist'),
       publicPath: "/"
     },
+    plugins: [
+      isProduction && new MiniCssExtractPlugin({
+        filename: "assests/css/[name].[contenthash:8].css",
+        chunkFilname: "assests/css/[name].[contenthash:8].chunk.css"
+      }),
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify(
+          isProduction ? "production" : "development"
+        )
+      }),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "public/index.html"),
+        inject: true
+      })
+    ].filter(Boolean),
     resolve: {
       extensions: [".js", ".jsx"]
-    }
+    },
     watch: true,
     watchOptions:{
       aggregateTimeout: 200,

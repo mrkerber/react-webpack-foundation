@@ -60,7 +60,7 @@ module.exports = function(_env, argv) {
     output: {
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: "/"
+      publicPath: "./"
     },
     plugins: [
       isProduction && new MiniCssExtractPlugin({

@@ -29982,20 +29982,6 @@ exports.unstable_wrap = unstable_wrap;
 }
 
 
-/***/ }),
-/* 10 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var React = __webpack_require__(1);
-
-var testText = React.createClass({
-  displayName: "testText",
-  render: function render() {
-    return /*#__PURE__*/React.createElement("div", null, "Hello World!");
-  }
-});
-module.exports = testText;
-
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -30026,11 +30012,11 @@ module.exports = testText;
 (() => {
 var React = __webpack_require__(1);
 
-var ReactDom = __webpack_require__(4);
+var ReactDom = __webpack_require__(4); //var TestText = require('./components/testText.jsx');
+//ReactDOM.render(<TestText />, document.getElementById('test'));
 
-var TestText = __webpack_require__(10);
 
-ReactDOM.render( /*#__PURE__*/React.createElement(TestText, null), document.getElementById('test'));
+console.log("working");
 })();
 
 /******/ })()

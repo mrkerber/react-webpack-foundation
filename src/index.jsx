@@ -1,5 +1,7 @@
 var React = require('react');
 var ReactDom = require('react-dom');
-var TestText = require('./components/testText.jsx');
+//var TestText = require('./components/testText.jsx');
 
-ReactDOM.render(<TestText />, document.getElementById('test'));
+//ReactDOM.render(<TestText />, document.getElementById('test'));
+
+console.log("working");

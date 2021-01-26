@@ -1,6 +1,7 @@
 var React = require('react');
+var createReactClass = require('create-react-class');
 
-var testText = React.createClass({
+var testText = createReactClass({
   render: function() {
     return (
       <div>Hello World!</div>

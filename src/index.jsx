@@ -1,7 +1,10 @@
 var React = require('react');
-var ReactDom = require('react-dom');
-//var TestText = require('./components/testText.jsx');
+var ReactDOM = require('react-dom');
+var TestText = require('./components/testText.jsx');
+var $ = require('jquery');
 
-//ReactDOM.render(<TestText />, document.getElementById('test'));
+ReactDOM.render(<TestText />, document.getElementById('test'));
 
 console.log("working");
+
+console.log($);
